@@ -1,7 +1,8 @@
 public class OurFirstGithubCollab{
     public static void main (String[] args){
-        System.out.println("Fitur 1");
+        System.out.println("Ini ceritanya fitur pertama sudah berjalan baik");
 
-        System.out.println("Pengembangan ke 2");
+        System.out.println("Ketua mulai mengembangkan fitur kedua");
+        System.out.println("Tambahan dari anggota 1")
     }
 }
