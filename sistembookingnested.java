@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class sistembookingnested {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
+      
         String film = "", kursi = "", username[] = {"Husein","Audric","Nadyne"}, password[] = {"kasir1","kasir2","kasir3"};
         String nama,pin;
         int hargaReguler = 25000, hargaPremium = 30000, hargaVIP = 45000, menu,jabatan;
@@ -46,12 +46,12 @@ public class sistembookingnested {
         while (login) {
             System.out.println("");
             System.out.println("Pilih Film Yang ingin Ditonton");
-            System.out.println("1. Film Joker   ");
-            System.out.println("2. Film Nemo    ");
-            System.out.println("3. Film Dora    ");
-            film = sc.nextLine();
+        String film = "", kursi = "";
+        int hargaReguler = 25000, hargaPremium = 30000, hargaVIP = 45000, menu;
 
-            System.out.println("Pilih Kelas Kursi Anda: ");
+        while (true) {
+            System.out.println("|   Pilih Film Yang ingin Ditonton    |");
+            System.out.println("|   Pilih Kelas Kursi Anda:     |");
 
             System.out.println("1. Reguler");
             System.out.println("2. Premium");
