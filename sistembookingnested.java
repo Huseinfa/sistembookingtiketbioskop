@@ -3,17 +3,54 @@ import java.util.Scanner;
 public class sistembookingnested {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+      
+        String film = "", kursi = "", username[] = {"Husein","Audric","Nadyne"}, password[] = {"kasir1","kasir2","kasir3"};
+        String nama,pin;
+        int hargaReguler = 25000, hargaPremium = 30000, hargaVIP = 45000, menu,jabatan;
+        boolean login = false;
+        
+        System.out.println("|----------------------------------|");
+        System.out.println("|Selamat datang di Bioskop Menarik |");
+        System.out.println("|----------------------------------|");
 
+        System.out.println("Pilih jabatan anda: ");
+        System.out.println("1.Kasir");
+        System.out.println("2. Admin");
+        jabatan = sc.nextInt();
+        sc.nextLine();
+
+
+        if (jabatan == 1) {
+            System.out.println("Masukkan username: ");
+            nama = sc.nextLine();
+            System.out.println("Masukkan Password");
+            pin = sc.nextLine();
+
+            for (int i = 0; i < username.length; i++) {
+                if (nama.equalsIgnoreCase(username[i]) && pin.equalsIgnoreCase(password[i])) {
+                    System.out.println("");
+                    System.out.println("Login Berhasil, Selamat datang :)");
+                        login = true;
+                        break;
+
+                } else {
+                        login = false;
+                        }
+            
+        }
+        } else {
+            System.out.println("Mohon maaf fitur ini belum tersedia");
+            
+        }
+
+        while (login) {
+            System.out.println("");
+            System.out.println("Pilih Film Yang ingin Ditonton");
         String film = "", kursi = "";
         int hargaReguler = 25000, hargaPremium = 30000, hargaVIP = 45000, menu;
 
         while (true) {
             System.out.println("|   Pilih Film Yang ingin Ditonton    |");
-            System.out.println("1. Film Joker   ");
-            System.out.println("2. Film Nemo    ");
-            System.out.println("3. Film Dora    ");
-            film = sc.nextLine();
-
             System.out.println("|   Pilih Kelas Kursi Anda:     |");
 
             System.out.println("1. Reguler");
