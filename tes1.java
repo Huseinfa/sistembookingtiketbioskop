@@ -1,19 +1,19 @@
-import java.util.Scanner;
+public import java.util.Scanner;
 
 public class sistembookingnested {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String admin[] = {"admin"}, pw[] = {"admin"};
+
         String film = "", kursi = "", username[] = {"Husein","Audric","Nadyne"}, password[] = {"kasir1","kasir2","kasir3"};
         String nama,pin;
         int hargaReguler = 25000, hargaPremium = 30000, hargaVIP = 45000, menu,jabatan;
-        boolean login = false, loginadmin = false;
+        boolean login = false;
         
         System.out.println("|----------------------------------|");
         System.out.println("|Selamat datang di Bioskop Menarik |");
         System.out.println("|----------------------------------|");
 
-        System.out.println("Pilih jenis pengguna : ");
+        System.out.println("Pilih jabatan anda: ");
         System.out.println("1.Kasir");
         System.out.println("2. Admin");
         jabatan = sc.nextInt();
@@ -27,36 +27,21 @@ public class sistembookingnested {
             pin = sc.nextLine();
 
             for (int i = 0; i < username.length; i++) {
-            if (nama.equalsIgnoreCase(username[i]) && pin.equalsIgnoreCase(password[i])) {
+                if (nama.equalsIgnoreCase(username[i]) && pin.equalsIgnoreCase(password[i])) {
                     System.out.println("");
-                    System.out.println("Login Berhasil, Selamat datang " + username[i] + ": ");
+                    System.out.println("Login Berhasil, Selamat datang :)");
                         login = true;
                         break;
 
                 } else {
-                    System.out.println("Username atau password invalid silahkan coba lagi");
-
-                }
+                        login = false;
+                        }
             
         }
-        } else if (jabatan == 2){
-            System.out.println("Masukkan username: ");
-            String name = sc.nextLine();
-            System.out.println("Masukkan Password");
-            String pass = sc.nextLine();
-
-            for (int i = 0; i < admin.length; i++){
-        if ((name.equalsIgnoreCase(admin[i]) && pass.equalsIgnoreCase(pw[i])))
-            {
-                    System.out.println("");
-                    System.out.println("Login Berhasil, Selamat datang " + admin[i] + ": ");
-                        loginadmin = true;
-                        break;
-                        }else {
-                        System.out.println("Username atau password invalid silahkan coba lagi");
-
-                        }
-                    }
+        } else {
+            System.out.println("Mohon maaf fitur ini belum tersedia");
+            
+        }
 
         while (login) {
             System.out.println("");
@@ -132,4 +117,6 @@ public class sistembookingnested {
         }
     }
 }
+ {
+    
 }
