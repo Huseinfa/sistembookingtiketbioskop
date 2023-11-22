@@ -86,14 +86,12 @@ public class bookingbioskopFIX {
                         System.out.println("Pesanan berhasil");
                     } else {
                         System.out.println("Maaf, Tiket telah habis");
+                        break;
                     }
                 
                     if (pilihanStudio == 1) {
-                        System.out.println("Pesanan berhasil");
                         System.out.println("Total Bayar anda adalah :" + tiket * hargaReguler);
                         break;
-                
-                        
                     }else if (pilihanStudio == 2) {
                         System.out.println("Total Bayar anda adalah :" + tiket * hargaPremium);
                         break;
