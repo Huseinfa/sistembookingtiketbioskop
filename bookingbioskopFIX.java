@@ -5,30 +5,23 @@ public class bookingbioskopFIX {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        String user[] = {"nadyne","audric","husein","1"};
-        String pass[] = {"kasir1","kasir2","kasir3","1"};
-        int adminId[] = {123,124};
-        int adminPin[] = {123,124};
+        String user[] = {"nadyne","audric","husein","1"}, pass[] = {"kasir1","kasir2","kasir3","1"}; 
+        int adminId[] = {123,124}, adminPin[] = {123,124};
         String role[] = {"kasir", "Admin"};
         String Member[] = {"A123","B123"};
         String daftarFilm[] = {"Film 1", "Film 2", "Film 3"}, waktu[] = {"7.30 - 10.00", "11.30 - 15.00", "19.00 - 21.00"};
         String[][]daftarKategori = {{"Reguler"}, {"Premium"}, {" VIP"}};
         int[][]kursi = new int[3][4];
         int[] jumlahTiket = {30, 25, 10};
-        int pilihanStudio, tiket, sesi;
+        int pilihanStudio, tiket = 0, sesi, menu = 0, harga = 0;
         int hargaReguler = 25000,hargaPremium = 30000,hargaVIP = 45000;
-        boolean login = false,isUsernameValid = false,isPasswordValid=false,isAdminId =false,isAdminPin = false;
-        int menu = 0;
+        boolean login = true, isUsernameValid = false,isPasswordValid=false,isAdminId =false,isAdminPin = false;
+        
+       
 
 
         
-
-        for (int i = 0; i < kursi.length; i++) {
-            for (int j = 0; j < kursi[i].length; j++) {
-                kursi[i][j] = 0;
-            }
-        }
-
+    while (login) {
         System.out.println("Silahkan login terlebih dahulu");
         System.out.println("Pilih angka sesuai tingkatan anda 1-2");
         System.out.println("1.Kasir");
@@ -45,13 +38,14 @@ public class bookingbioskopFIX {
     
             for (int i = 0; i < user.length; i++) {
                 if (uName.equalsIgnoreCase(user[i])) {
-                        System.out.println("Selamat datang " + uName + "");
-                        isUsernameValid = true;
+                    isUsernameValid = true;
                     if (pin.equals(pass[i])) {
                         isPasswordValid = true;
+                        System.out.println("Selamat datang " + uName + "");
                         break;
                     }
                 } else{
+                    login = true;
                     isUsernameValid = false;
                     isPasswordValid = false;
                     
@@ -74,10 +68,10 @@ public class bookingbioskopFIX {
                     case 1:
                     System.out.printf("=====================================================================================%n");
                     System.out.printf("| %-10s | %-17s | %-17s | %-15s | %-10S | %n|", "Kode sesi", "FILM", "WAKTU", "KATEGORI", "TIKET");
-                    System.out.printf("------------------------------------------------------------------------------------%n");
+                    System.out.printf("-------------------------------------------------------------------------------------%n");
 
                 for (int i = 0; i < daftarFilm.length; i++) {
-                    System.out.printf("| %-10d | %-17s | %-17s | %-10s | %-10s | %n",i + 1 , daftarFilm[i], waktu[i], daftarKategori[i][0], jumlahTiket[i]);
+                    System.out.printf("| %-10d | %-17s | %-17s | %-15s | %-10s | %n",i + 1 , daftarFilm[i], waktu[i], daftarKategori[i][0], jumlahTiket[i]);
                     }
                     System.out.printf("=====================================================================================%n");
                     System.out.println();
@@ -85,19 +79,12 @@ public class bookingbioskopFIX {
                     System.out.println("Pilih film yang akan ditonton: ");
                     int film = sc.nextInt();
                 
-                    //Menampilkan Kursi
                     System.out.println("Jumlah tiket yang ingin dipesan");
                     tiket = sc.nextInt();
                     System.out.println("Pilih kursi anda: ");
-                    // for (int i = 0; i < kursi.length; i++) {
-                    //     for (int j = 0; j < kursi[i].length; j++) {
-                    //         System.out.printf("| %-10d |%n", kursi[i][j]);
-                    //     }
-                    //     System.out.println();
-                    //     }
+                  
                     tampilKursi(kursi);
 
-                        //Input Layout
                     for (int j = 0; j < tiket; j++) {
                         System.out.print("Masukkan baris: ");
                         int baris = sc.nextInt();
@@ -122,17 +109,23 @@ public class bookingbioskopFIX {
                         j--;
                     }
                     }
-
-                    System.out.println("Total bayar anda adalah: " + hargaPremium * tiket);
+                    harga = hargaPremium * tiket;
+                    System.out.println("Total bayar anda adalah: " + harga);
                     break;
     
                     case 2:
                     System.out.println("Input Sesi Baru: ");
                     break;
+
+                    case 3:
+                    login = true;
+                    isUsernameValid = false;
+                    isPasswordValid = false;
+                    break;
                 }
                 }
         
-            } while (menu != 3);
+            } while (menu !=3);
         }else if (level == 2) {
             System.out.println("Id Admin: ");
             int id = sc.nextInt();
@@ -141,16 +134,16 @@ public class bookingbioskopFIX {
     
             for (int i = 0; i < adminId.length; i++) {
                 if (id == adminId[i]) {
-                        System.out.println("Selamat datang Admin");
-                        isAdminId = true;
+                    isAdminId = true;
                     if (pin == adminPin[i]) {
                         isAdminPin = true;
+                        System.out.println("Selamat datang Admin");
                         break;
                     }
                 } else{
                     isAdminId = false;
                     isAdminPin = false;
-                    
+                    System.out.println("Masukkan id atau pin yang benar");
                 }
                 
             }
@@ -172,10 +165,14 @@ public class bookingbioskopFIX {
 
                 switch (menu) {
                     case 1:
+                    System.out.printf("===================================%n");
+                    System.out.println("         Laporan Pendapatan    ");
+                    System.out.printf("-----------------------------------%n");
                     LocalDate tanggal = LocalDate.now();
                     System.out.println(tanggal);
-                        
-                        break;
+                    System.out.println("Tiket yang terjual: " + tiket);
+                    System.out.println("Hasil pendapatan: " + harga);
+                    break;
 
                     case 2:
                     break;
@@ -184,7 +181,9 @@ public class bookingbioskopFIX {
                 
                 
             }
+    
         } while (menu !=3);
+    }    
     }
 
 
@@ -196,7 +195,5 @@ public class bookingbioskopFIX {
                 System.out.println();
                 }
     }
-
-//     public static void addArray()
 
 }
