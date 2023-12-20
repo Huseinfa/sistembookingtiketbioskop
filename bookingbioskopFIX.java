@@ -99,7 +99,7 @@ public class bookingbioskopFIX {
             return bioskop;
         }
 
-        System.out.print("Kategori Kursi: ");
+        System.out.println("Kategori Kursi: ");
         System.out.println("[1]Reguler");
         System.out.println("[2]Premium");
         System.out.println("[3]VIP");
@@ -195,7 +195,7 @@ public class bookingbioskopFIX {
             }
 
         }
-        System.out.println("User Tidak di Temukan!");
+        System.out.println("Selamat datang " + userInput);
         return index;
     }
 
@@ -352,7 +352,7 @@ public class bookingbioskopFIX {
                     } else if (isMember.equalsIgnoreCase("n")) {
                             totalBayar = harga;
                                 System.out.println("Total Bayar " + totalBayar);
-                                break;
+                                
                     }
                     System.out.println("Apakah Anda ingin cetak struk? (y/n)");
                     String struk = sc.nextLine();
