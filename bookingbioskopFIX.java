@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class bookingbioskopFIX {
 
-    private static String generateKursi(int baris, int kolom) {
+    public static String generateKursi(int baris, int kolom) {
         int[][] kursi = new int[baris][kolom];
         StringBuilder seatMap = new StringBuilder();
     
@@ -31,7 +31,7 @@ public class bookingbioskopFIX {
         }
     }
 
-    private static String convert2DArrayToString(int[][] seatArray) {
+    public static String convert2DArrayToString(int[][] seatArray) {
         StringBuilder seatMap = new StringBuilder();
     
         for (int i = 0; i < seatArray.length; i++) {
@@ -48,11 +48,9 @@ public class bookingbioskopFIX {
         return seatMap.toString();
     }
 
-    private static int[][] convertStringTo2DArray(String seatMap) {
-        // Split the string into individual seat values
+    public static int[][] convertStringTo2DArray(String seatMap) {
         String[] rowStrings = seatMap.split(" ");
         
-        // Convert each seat value to integer and store in a 2D array
         int numRows = rowStrings.length;
         int numCols = rowStrings[0].split(",").length;
         int[][] seatArray = new int[numRows][numCols];
@@ -66,11 +64,11 @@ public class bookingbioskopFIX {
         return seatArray;
     }
 
-    private static String[][] tambahDataBioskop(String[][] bioskop) {
+    public static String[][] tambahDataBioskop(String[][] bioskop) {
         Scanner sc = new Scanner(System.in);
-        String waktuFilm = "";  // Declare variables outside of if-else blocks
+        String waktuFilm = "";  
         String hargaTiket = "";
-        String jumlahKursi = "";
+        int jumlahKursi = 0;
         String kategoriKursi = "";
 
         System.out.println("Masukkan informasi film baru:");
@@ -84,10 +82,7 @@ public class bookingbioskopFIX {
         System.out.println("[2]10.00-12.30");
         System.out.println("[3]13.00-15.30");
         String InputwaktuFilm = sc.nextLine();
-        // if (waktuFilm != "1" || waktuFilm != "2" || waktuFilm != "3") {
-        // System.out.println("Mohon Masukkan angka 1/2/3");
-        // break;
-        // }
+
         if (InputwaktuFilm.equals("1")) {
             waktuFilm = "7.30-10.00";
         } else if (InputwaktuFilm.equals("2")) {
@@ -107,25 +102,25 @@ public class bookingbioskopFIX {
 
         if (InputkategoriKursi.equals("1")) {
         kategoriKursi = "Reguler";
-        hargaTiket = "50000";
-        jumlahKursi = "50";
+        hargaTiket = "25000";
         } else if (InputkategoriKursi.equals("2")) {
         kategoriKursi = "Premium";
-        hargaTiket = "75000";
-        jumlahKursi = "30";
+        hargaTiket = "30000";
         } else if (InputkategoriKursi.equals("3")) {
         kategoriKursi = "VIP";
-        hargaTiket = "100000";
-        jumlahKursi = "20";
+        hargaTiket = "45000";
         } else {
         System.out.println("Mohon Masukkan angka 1/2/3");
-        return bioskop; // Return bioskop without adding new data
+        return bioskop;
         }
 
         System.out.print("Jumlah Kolom Kursi: ");
-        int kolom = sc.nextInt();
+        int kolom = Integer.parseInt(sc.nextLine()); // Convert input to int
         System.out.print("Jumlah Baris Kursi: ");
-        int baris = sc.nextInt();
+        int baris = Integer.parseInt(sc.nextLine()); // Convert input to int
+        
+         jumlahKursi = kolom * baris;
+        String jumlahKursiString = String.valueOf(jumlahKursi);
 
         // Membuat array kursi untuk film baru
         String kursiBaru = generateKursi(baris, kolom);
@@ -133,7 +128,7 @@ public class bookingbioskopFIX {
         // Menambah data baru ke array bioskop
         String[][] bioskopBaru = new String[bioskop.length + 1][6];
         System.arraycopy(bioskop, 0, bioskopBaru, 0, bioskop.length);
-        bioskopBaru[bioskop.length] = new String[]{namaFilm, waktuFilm, hargaTiket, jumlahKursi, kategoriKursi, kursiBaru};
+        bioskopBaru[bioskop.length] = new String[]{namaFilm, waktuFilm, hargaTiket, jumlahKursiString, kategoriKursi, kursiBaru};
 
 
         System.out.println("Data baru berhasil ditambahkan!");
@@ -156,7 +151,7 @@ public class bookingbioskopFIX {
             System.out.println();
         }
 
-    private static String generateRandomCode() {
+    public static String generateRandomCode() {
         int length = 4;
         Random random = new Random();
         StringBuilder randomCode = new StringBuilder();
@@ -188,14 +183,17 @@ public class bookingbioskopFIX {
                 // lanjut
                 if(passInput.equalsIgnoreCase(user[i][1]))
                 {
+                    System.out.println("Selamat datang " + userInput);
+
                     index = i;
                 }else {
-                    System.out.println("User Tidak di Temukan!");
+                    System.out.println("Password Salah");
                 }
+            }else {
+                break;
             }
 
         }
-        System.out.println("Selamat datang " + userInput);
         return index;
     }
 
@@ -218,10 +216,7 @@ public class bookingbioskopFIX {
             {"Film C", "13.00-15.30", "45000", "20", "VIP", generateKursi(5, 5)}
         };
 
-        String[]daftarKategori = {"Reguler", "Premium", "VIP"};
-        int[][]kursi = new int[3][4];
-        int[] jumlahTiket = {30, 25, 10};
-        int pilihanStudio, tiket = 0, sesi, menu = 0, harga = 0;
+        int tiket = 0, menu = 0, harga = 0;
         int hargaReguler = 25000,hargaPremium = 30000,hargaVIP = 45000;
         int biayaMember = 70000;
         int totalBayar = 0;
@@ -308,7 +303,7 @@ public class bookingbioskopFIX {
                             if (newKursi[baris - 1][kolom - 1] == 0) {
                                 newKursi[baris - 1][kolom - 1] = 1;
                                 System.out.println("Pemesanan berhasil untuk kursi " + baris + ", " + kolom);
-                                // Update the main variable bioskop
+
                                 bioskop[indexFilm][5] = convert2DArrayToString(newKursi);
                                 if (kolom == tiket) {
                                     tampilKursi(newKursi);
@@ -352,7 +347,7 @@ public class bookingbioskopFIX {
                     } else if (isMember.equalsIgnoreCase("n")) {
                             totalBayar = harga;
                                 System.out.println("Total Bayar " + totalBayar);
-                                
+                                break;
                     }
                     System.out.println("Apakah Anda ingin cetak struk? (y/n)");
                     String struk = sc.nextLine();
