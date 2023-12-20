@@ -369,8 +369,9 @@ public class bookingbioskopFIX {
                     System.out.println(tanggal);
                     System.out.println("Jam : " + bioskop[indexFilm][1]);
                     System.out.println("Tiket yang Dibeli : " + tiket);
-                    System.out.println("Harga Tiket: " + harga);
                     System.out.println("Total Bayar: " + totalBayar);
+                    System.out.printf("===================================%n");
+
                     System.out.println();
                     }
                     break;
